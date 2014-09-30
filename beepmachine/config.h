@@ -1,0 +1,8 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+enum LENGTH {WHOLE, HALF, QUARTER, EIGHTH, SIXTEENTH};
+enum TYPE_NOTE {DO, DO_D, RE, RE_D, MI, FA, FA_D, SOL, SOL_D, LA, LA_D, SI};
+#define LA_REF 440;
+
+#endif // CONFIG_H

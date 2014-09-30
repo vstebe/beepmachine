@@ -15,4 +15,11 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    note.cpp \
+    sheet.cpp
+
+HEADERS += \
+    note.h \
+    sheet.h \
+    config.h
