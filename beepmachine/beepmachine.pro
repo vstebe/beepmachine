@@ -1,0 +1,18 @@
+#-------------------------------------------------
+#
+# Project created by QtCreator 2014-09-30T11:29:49
+#
+#-------------------------------------------------
+
+QT       += core
+
+QT       -= gui
+
+TARGET = beepmachine
+CONFIG   += console
+CONFIG   -= app_bundle
+
+TEMPLATE = app
+
+
+SOURCES += main.cpp
