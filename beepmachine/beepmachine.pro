@@ -19,6 +19,7 @@ SOURCES += main.cpp \
     note.cpp \
     sheet.cpp \
     player.cpp \
+    beepplayer.cpp \
     sheetParser.cpp
 
 HEADERS += \
@@ -26,4 +27,5 @@ HEADERS += \
     sheet.h \
     config.h \
     player.h \
+    beepplayer.h \
     sheetParser.h
