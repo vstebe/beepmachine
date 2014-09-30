@@ -18,12 +18,14 @@ TEMPLATE = app
 SOURCES += main.cpp \
     note.cpp \
     sheet.cpp \
-    player.cpp
+    player.cpp \
+    beepplayer.cpp
     sheetParser.cpp
 
 HEADERS += \
     note.h \
     sheet.h \
     config.h \
-    player.h
+    player.h \
+    beepplayer.h
     sheetParser.h
