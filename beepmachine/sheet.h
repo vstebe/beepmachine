@@ -8,6 +8,8 @@ class Sheet
 {
 public:
     Sheet(const QVector<Note>& notes, int tempo);
+    int getTempo();
+    QVector<Note> getNotes();
 
 private:
     QVector<Note> _notes;
