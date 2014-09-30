@@ -17,9 +17,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     note.cpp \
-    sheet.cpp
+    sheet.cpp \
+    sheetParser.cpp
 
 HEADERS += \
     note.h \
     sheet.h \
-    config.h
+    config.h \
+    sheetParser.h
