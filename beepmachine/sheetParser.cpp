@@ -62,6 +62,10 @@ Note SheetParser::getNote(QString ligne)
              return Note(SIXTEENTH, SILENCE);
         if (ligne == "/dc.")
             return Note(SIXTEENTH_POINT, SILENCE);
+        if (ligne == "/tc")
+            return Note(THIRTYSECOND, SILENCE);
+        if (ligne == "/tc.")
+            return Note (THIRTYSECOND_POINT, SILENCE);
     }
     else
     {
@@ -97,25 +101,29 @@ Note SheetParser::getNote(QString ligne)
 
 
        if (liste[1] == "r")
-            length=WHOLE;
+           length=WHOLE;
        else if (liste[1] == "r.")
-            length=WHOLE_POINT;
+           length=WHOLE_POINT;
        else if (liste[1] == "b")
-            length=HALF;
+           length=HALF;
        else if (liste[1] == "b.")
-            length=HALF_POINT;
+           length=HALF_POINT;
        else if (liste[1] == "n")
-            length=QUARTER;
+           length=QUARTER;
        else if (liste[1] == "n.")
-            length=QUARTER_POINT;
+           length=QUARTER_POINT;
        else if (liste[1] == "c")
-            length=EIGHTH;
+           length=EIGHTH;
        else if (liste[1] == "c.")
            length=EIGHTH_POINT;
        else if (liste[1] == "dc")
-            length=SIXTEENTH;
+           length=SIXTEENTH;
        else if (liste[1] == "dc.")
-            length=SIXTEENTH_POINT;
+           length=SIXTEENTH_POINT;
+       else if (liste[1] == "tc")
+           length=THIRTYSECOND;
+       else if (liste[1] == "tc.")
+           length=THIRTYSECOND_POINT;
 
        return Note(length, type, octave);
     }
