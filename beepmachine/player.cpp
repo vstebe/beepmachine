@@ -46,6 +46,12 @@ void Player::run()
             case QUARTER_POINT:
                 duration = _sheet->getTempo() * 1.5f;
                 break;
+            case EIGHTH_POINT:
+                duration = (_sheet->getTempo() * 1.5f) / 2.f;
+                break;
+            case SIXTEENTH_POINT:
+                duration = (_sheet->getTempo() * 1.5f)/ 4.f;
+                break;
         }
 
         if(note.getTypeNote() == SILENCE)

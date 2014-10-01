@@ -70,7 +70,7 @@ Note SheetParser::getNote(QString ligne)
        LENGTH length;
        int octave = liste[2].toInt(&ok, 10);
 
-       if (liste[0] ==  "do" || liste[0] == "C")a
+       if (liste[0] ==  "do" || liste[0] == "C")
             type=DO;
        else if (liste[0] == "do#" || liste[0] == "C#" || liste[0] == "reb" || liste [0] == "Db")
             type=DO_D;
