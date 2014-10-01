@@ -69,47 +69,30 @@ Note SheetParser::getNote(QString ligne)
        LENGTH length;
        int octave = liste[2].toInt(&ok, 10);
 
-        if (liste[0] ==  "do" || liste[0] == "C")
-                type=DO;
-
-        else if (liste[0] == "do#" || liste[0] == "C#")
-                type=DO_D;
-
-        else if (liste[0] ==  "re" || liste[0] == "D")
-                type=RE;
-
-        else if (liste[0] ==  "re#" || liste[0] == "D#")
-                type=RE_D;
-
-        else if (liste[0] ==   "mi" || liste[0] == "E")
-                type=MI;
-
-        else if (liste[0] ==   "fa" || liste[0] == "F")
-                type=FA;
-
-
-        else if (liste[0] ==   "fa#" || liste[0] == "F#")
-                type=FA_D;
-
-
-        else if (liste[0] ==   "sol" || liste[0] == "G")
-                type=SOL;
-
-
-        else if (liste[0] ==   "sol#" || liste[0] == "G#")
-                type=SOL_D;
-
-
-        else if (liste[0] ==   "la" || liste[0] == "A")
-                type=LA;
-
-
-        else if (liste[0] ==  "la#" || liste[0] == "A#")
-                type=LA_D;
-
-
-        else if (liste[0] ==   "si" || liste[0] == "B")
-                type=SI;
+       if (liste[0] ==  "do" || liste[0] == "C")
+            type=DO;
+       else if (liste[0] == "do#" || liste[0] == "C#")
+            type=DO_D;
+       else if (liste[0] ==  "re" || liste[0] == "D")
+            type=RE;
+       else if (liste[0] ==  "re#" || liste[0] == "D#")
+            type=RE_D;
+       else if (liste[0] ==   "mi" || liste[0] == "E")
+            type=MI;
+       else if (liste[0] ==   "fa" || liste[0] == "F")
+            type=FA;
+       else if (liste[0] ==   "fa#" || liste[0] == "F#")
+            type=FA_D;
+       else if (liste[0] ==   "sol" || liste[0] == "G")
+            type=SOL;
+       else if (liste[0] ==   "sol#" || liste[0] == "G#")
+            type=SOL_D;
+       else if (liste[0] ==   "la" || liste[0] == "A")
+            type=LA;
+       else if (liste[0] ==  "la#" || liste[0] == "A#")
+            type=LA_D;
+       else if (liste[0] ==   "si" || liste[0] == "B")
+            type=SI;
 
 
        if (liste[1] == "r")
