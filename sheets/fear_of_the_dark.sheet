@@ -143,32 +143,32 @@ fa:b.:2
 
 #10
 /c
-la:cc:2
+la:dc:2
 re:n.:3
 mi:c:3
 fa:n:3
 sol:c:3
 fa:c:3
-mi:cc:3
+mi:dc:3
 do:n:3
 
 #11
-sol:cc:2
+sol:dc:2
 do:n:3
 la#:c:2
 do:c:3
 do:c:3
-fa:cc:3
-re:n:3
+fa:dc:3
+re:n.:3
 
 #12
 la:c:2
 re:c:3
-mi:cc:3
-fa:c:3
+mi:dc:3
+fa:n.:3
 sol:c:3
 fa:c:3
-mi:cc:3
+mi:dc:3
 
 #13
 do:r:3

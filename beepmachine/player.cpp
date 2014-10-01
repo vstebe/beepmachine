@@ -20,6 +20,7 @@ void Player::run()
 
         float duration;
 
+
         switch(note.getLength())
         {
             case WHOLE:
@@ -53,6 +54,8 @@ void Player::run()
                 duration = (_sheet->getTempo() * 1.5f)/ 4.f;
                 break;
         }
+
+        duration = 60000.f / duration;
 
         if(note.getTypeNote() == SILENCE)
         {
