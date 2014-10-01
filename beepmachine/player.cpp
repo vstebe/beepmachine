@@ -55,7 +55,7 @@ void Player::run()
                 break;
         }
 
-        duration = 60.f / duration;
+        duration = 60000.f / duration;
 
         if(note.getTypeNote() == SILENCE)
         {
