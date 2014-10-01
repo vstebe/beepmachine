@@ -1,4 +1,4 @@
-300
+350
 #intro 1
 sol:c:3
 do:c:3
@@ -57,7 +57,7 @@ fa:n.:3
 sib:n.:2
 mib:c:3
 re:c:3
-sib:r:2
+do:b:3
 
 #main oct+
 
@@ -83,4 +83,4 @@ fa:n.:4
 sib:n.:3
 mib:c:4
 re:c:4
-sib:r:3
+do:b:4

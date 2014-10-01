@@ -7,13 +7,12 @@ class Player
 {
 public:
     Player(Sheet * sheet);
-    void run();
+    virtual void run();
 
 protected:
     virtual void playNote(float freq, float duration) = 0;
     virtual void playSilence(float duration) = 0;
 
-private:
     Sheet * _sheet;
 };
 
