@@ -2,53 +2,25 @@
 
 #include <QVector>
 #include "sheet.h"
-#include "note.h"
 #include "beepplayer.h"
+#include "sheetParser.h"
 #include "config.h"
+
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    QVector<Note> notes;
-    notes.append(Note(HALF, SOL, 3));
-    notes.append(Note(HALF, DO, 3));
-    notes.append(Note(QUARTER, RE_D, 3));
-    notes.append(Note(QUARTER, FA, 3));
-    notes.append(Note(HALF, SOL, 3));
-    notes.append(Note(HALF, DO, 3));
+    QString filename = a.arguments()[1];
 
-    notes.append(Note(QUARTER, RE_D, 3));
-    notes.append(Note(QUARTER, FA, 3));
-    notes.append(Note(HALF, SOL, 3));
-    notes.append(Note(HALF, DO, 3));
-
-    notes.append(Note(QUARTER, RE_D, 3));
-    notes.append(Note(QUARTER, FA, 3));
-    notes.append(Note(HALF, SOL, 3));
-    notes.append(Note(HALF, DO, 3));
-
-    notes.append(Note(QUARTER, RE_D, 3));
-    notes.append(Note(QUARTER, FA, 3));
-    notes.append(Note(HALF, SOL, 3));
-    notes.append(Note(HALF, DO, 3));
-
-    notes.append(Note(QUARTER, MI, 3));
-    notes.append(Note(QUARTER, FA, 3));
-    notes.append(Note(HALF, SOL, 3));
-    notes.append(Note(HALF, DO, 3));
+    SheetParser parser(filename);
+    Sheet sheet = parser.getSheet();
 
 
-    notes.append(Note(QUARTER, MI, 3));
-    notes.append(Note(QUARTER, FA, 3));
-    notes.append(Note(HALF, SOL, 3));
-    notes.append(Note(HALF, DO, 3));
+    BeepPlayer debugPlayer(&sheet);
+    debugPlayer.run();
 
 
-    Sheet sheet(notes, 150);
-
-    BeepPlayer player(&sheet);
-    player.run();
-
-    return a.exec();
+    return 0;
 }

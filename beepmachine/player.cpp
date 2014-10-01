@@ -17,11 +17,6 @@ void Player::run()
     while (it.hasNext())
     {
         Note note = it.next();
-        int diffOctave =  note.getOctave() - OCTAVE_REF;
-        int diffHalfTones = note.getTypeNote() - LA;
-        diffHalfTones += diffOctave * 12;
-
-        float freq = LA_REF * pow(2, ((float)diffHalfTones) / 12.f);
 
         float duration;
 
@@ -53,6 +48,20 @@ void Player::run()
                 break;
         }
 
-        playNote(freq, duration);
+        if(note.getTypeNote() == SILENCE)
+        {
+            playSilence(duration);
+        } else {
+
+            int diffOctave =  note.getOctave() - OCTAVE_REF;
+            int diffHalfTones = note.getTypeNote() - LA;
+            diffHalfTones += diffOctave * 12;
+
+            float freq = LA_REF * pow(2, ((float)diffHalfTones) / 12.f);
+
+            playNote(freq, duration);
+        }
+
+
     }
 }

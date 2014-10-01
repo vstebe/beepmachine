@@ -14,3 +14,10 @@ void BeepPlayer::playNote(float freq, float duration)
     qDebug() << cmd;
     system(cmd.toStdString().c_str());
 }
+
+void BeepPlayer::playSilence(float duration)
+{
+    QString cmd("sleep ");
+    cmd += QString::number(duration / 1000);
+    system(cmd.toStdString().c_str());
+}

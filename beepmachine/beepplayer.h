@@ -5,7 +5,9 @@ class BeepPlayer : public Player
 {
 public:
     BeepPlayer(Sheet * sheet);
+protected:
     void playNote(float freq, float duration);
+    void playSilence(float duration);
 };
 
 #endif // BEEPPLAYER_H
