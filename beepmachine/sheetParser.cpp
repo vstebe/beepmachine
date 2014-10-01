@@ -27,8 +27,11 @@ Sheet SheetParser::getSheet()
    while(! flux.atEnd())            //other lines
    {
        ligne = flux.readLine();
-       Note n = getNote(ligne);
-       vec.push_back(n);
+       if (ligne != "" && ligne[0] != '#')      //empty line or comment
+       {
+           Note n = getNote(ligne);
+           vec.push_back(n);
+       }
    }
    return Sheet(vec, tempo);
 }
@@ -58,10 +61,6 @@ Note SheetParser::getNote(QString ligne)
         if (ligne == "/dc")
              return Note(SIXTEENTH, SILENCE);
     }
-    else if (ligne[0] == '#')   //comment
-    {
-        //do nothing
-    }
     else
     {
        QStringList liste = ligne.split(":");
@@ -71,27 +70,27 @@ Note SheetParser::getNote(QString ligne)
 
        if (liste[0] ==  "do" || liste[0] == "C")
             type=DO;
-       else if (liste[0] == "do#" || liste[0] == "C#")
+       else if (liste[0] == "do#" || liste[0] == "C#" || liste[0] == "reb" || liste [0] == "Db")
             type=DO_D;
        else if (liste[0] ==  "re" || liste[0] == "D")
             type=RE;
-       else if (liste[0] ==  "re#" || liste[0] == "D#")
+       else if (liste[0] ==  "re#" || liste[0] == "D#" || liste[0] == "mib" || liste [0] == "Eb")
             type=RE_D;
-       else if (liste[0] ==   "mi" || liste[0] == "E")
+       else if (liste[0] ==   "mi" || liste[0] == "E"  || liste[0] == "fab" || liste [0] == "Fb")
             type=MI;
        else if (liste[0] ==   "fa" || liste[0] == "F")
             type=FA;
-       else if (liste[0] ==   "fa#" || liste[0] == "F#")
+       else if (liste[0] ==   "fa#" || liste[0] == "F#" || liste[0] == "solb" || liste [0] == "Gb")
             type=FA_D;
        else if (liste[0] ==   "sol" || liste[0] == "G")
             type=SOL;
-       else if (liste[0] ==   "sol#" || liste[0] == "G#")
+       else if (liste[0] ==   "sol#" || liste[0] == "G#" || liste[0] == "lab" || liste [0] == "Ab")
             type=SOL_D;
        else if (liste[0] ==   "la" || liste[0] == "A")
             type=LA;
-       else if (liste[0] ==  "la#" || liste[0] == "A#")
+       else if (liste[0] ==  "la#" || liste[0] == "A#" || liste[0] == "sib" || liste [0] == "Bb")
             type=LA_D;
-       else if (liste[0] ==   "si" || liste[0] == "B")
+       else if (liste[0] ==   "si" || liste[0] == "B" || liste[0] == "dob" || liste [0] == "Cb")
             type=SI;
 
 
@@ -114,5 +113,5 @@ Note SheetParser::getNote(QString ligne)
 
        return Note(length, type, octave);
     }
-    return Note();
+return Note();
 }
