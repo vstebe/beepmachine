@@ -7,6 +7,7 @@ class Note
 {
 public:
     Note(LENGTH length, TYPE_NOTE typeNote, int octave);
+    Note(LENGTH length, TYPE_NOTE typeNote);
     Note();
     LENGTH getLength();
     TYPE_NOTE getTypeNote();
