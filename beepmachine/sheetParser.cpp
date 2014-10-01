@@ -45,8 +45,6 @@ Note SheetParser::getNote(QString ligne)
         if (ligne == "/r")
              return Note(WHOLE, SILENCE);
         if (ligne == "/r.")
-             return Note(WHOLE, SILENCE);
-        if (ligne == "/r.")
              return Note(WHOLE_POINT, SILENCE);
         if(ligne == "/b")
              return Note(HALF, SILENCE);
@@ -58,8 +56,12 @@ Note SheetParser::getNote(QString ligne)
              return Note(QUARTER_POINT, SILENCE);
         if (ligne ==  "/c")
              return Note(EIGHTH, SILENCE);
+        if  (ligne == "/c.")
+            return Note(EIGHTH_POINT, SILENCE);
         if (ligne == "/dc")
              return Note(SIXTEENTH, SILENCE);
+        if (ligne == "/dc.")
+            return Note(SIXTEENTH_POINT, SILENCE);
     }
     else
     {
@@ -68,7 +70,7 @@ Note SheetParser::getNote(QString ligne)
        LENGTH length;
        int octave = liste[2].toInt(&ok, 10);
 
-       if (liste[0] ==  "do" || liste[0] == "C")
+       if (liste[0] ==  "do" || liste[0] == "C")a
             type=DO;
        else if (liste[0] == "do#" || liste[0] == "C#" || liste[0] == "reb" || liste [0] == "Db")
             type=DO_D;
@@ -108,8 +110,12 @@ Note SheetParser::getNote(QString ligne)
             length=QUARTER_POINT;
        else if (liste[1] == "c")
             length=EIGHTH;
+       else if (liste[1] == "c.")
+           length=EIGHTH_POINT;
        else if (liste[1] == "dc")
             length=SIXTEENTH;
+       else if (liste[1] == "dc.")
+            length=SIXTEENTH_POINT;
 
        return Note(length, type, octave);
     }
