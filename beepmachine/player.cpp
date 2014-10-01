@@ -39,6 +39,9 @@ void Player::run()
             case SIXTEENTH:
                 duration = duration / 4.f;
                 break;
+            case THIRTYSECOND:
+                duration = duration / 8.f;
+                break;
             case WHOLE_POINT:
                 duration = duration * 6;
                 break;
@@ -52,7 +55,10 @@ void Player::run()
                 duration = (duration * 1.5f) / 2.f;
                 break;
             case SIXTEENTH_POINT:
-                duration = (duration * 1.5f)/ 4.f;
+                duration = (duration * 1.5f) / 4.f;
+                break;
+            case THIRTYSECOND_POINT:
+                duration = (duration * 1.5f) / 8.f;
                 break;
         }
 
