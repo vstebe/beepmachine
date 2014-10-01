@@ -18,44 +18,46 @@ void Player::run()
     {
         Note note = it.next();
 
-        float duration;
+        float duration = 60000.f / _sheet->getTempo();
+
 
 
         switch(note.getLength())
         {
             case WHOLE:
-                duration = _sheet->getTempo() * 4;
+                duration = duration * 4;
                 break;
             case HALF:
-                duration = _sheet->getTempo() * 2;
+                duration = duration * 2;
                 break;
             case QUARTER:
-                duration = _sheet->getTempo();
+                duration = duration;
                 break;
             case EIGHTH:
-                duration = _sheet->getTempo() / 2.f;
+                duration = duration / 2.f;
                 break;
             case SIXTEENTH:
-                duration = _sheet->getTempo() / 4.f;
+                duration = duration / 4.f;
                 break;
             case WHOLE_POINT:
-                duration = _sheet->getTempo() * 6;
+                duration = duration * 6;
                 break;
             case HALF_POINT:
-                duration = _sheet->getTempo() * 3;
+                duration = duration * 3;
                 break;
             case QUARTER_POINT:
-                duration = _sheet->getTempo() * 1.5f;
+                duration = duration * 1.5f;
                 break;
             case EIGHTH_POINT:
-                duration = (_sheet->getTempo() * 1.5f) / 2.f;
+                duration = (duration * 1.5f) / 2.f;
                 break;
             case SIXTEENTH_POINT:
-                duration = (_sheet->getTempo() * 1.5f)/ 4.f;
+                duration = (duration * 1.5f)/ 4.f;
                 break;
         }
 
-        duration = 60000.f / duration;
+
+
 
         if(note.getTypeNote() == SILENCE)
         {
