@@ -21,7 +21,7 @@ Sheet SheetParser::getSheet()
    ligne = flux.readLine();
 
    bool ok;
-   tempo = ligne.toInt(ok&, 10);    //first line
+   tempo = ligne.toInt(&ok, 10);    //first line
 
 
    while(! flux.atEnd())            //other lines
@@ -30,49 +30,35 @@ Sheet SheetParser::getSheet()
        Note n = getNote(ligne);
        vec.push_back(n);
    }
-   return sheet (vec, tempo);
+   return Sheet(vec, tempo);
 }
 
 
 Note SheetParser::getNote(QString ligne)
 {
-    if (ligne[0] == "/") //special command
+    bool ok;
+    if (ligne[0] == '/') //special command
     {
-        switch(ligne)           //SILENCE
-        case "/r":
-             return Note(LENGTH.WHOLE, TYPE_NOTE.SILENCE);
-            break;
-
-        case "/r.":
-             return Note(LENGTH.WHOLE_POINT, TYPE_NOTE.SILENCE);
-            break;
-
-        case "/b":
-             return Note(LENGTH.HALF, TYPE_NOTE.SILENCE);
-            break;
-
-        case "/b.":
-             return Note(LENGTH.HALF_POINT, TYPE_NOTE.SILENCE);
-            break;
-
-        case "/n":
-             return Note(LENGTH.QUARTER, TYPE_NOTE.SILENCE);
-            break;
-
-        case "/n.":
-             return Note(LENGTH.QUARTER_POINT, TYPE_NOTE.SILENCE);
-            break;
-
-        case "/c":
-             return Note(LENGTH.EIGHTH, TYPE_NOTE.SILENCE);
-            break;
-
-        case "/dc":
-             return Note(LENGTH.SIXTEENTH, TYPE_NOTE.SILENCE);
-            break;
-
+        if (ligne == "/r")
+             return Note(WHOLE, SILENCE);
+        if (ligne == "/r.")
+             return Note(WHOLE, SILENCE);
+        if (ligne == "/r.")
+             return Note(WHOLE_POINT, SILENCE);
+        if(ligne == "/b")
+             return Note(HALF, SILENCE);
+        if (ligne == "/b.")
+             return Note(HALF_POINT, SILENCE);
+        if (ligne == "/n")
+             return Note(QUARTER, SILENCE);
+        if (ligne == "/n.")
+             return Note(QUARTER_POINT, SILENCE);
+        if (ligne ==  "/c")
+             return Note(EIGHTH, SILENCE);
+        if (ligne == "/dc")
+             return Note(SIXTEENTH, SILENCE);
     }
-    else if (ligne[0] == "#")   //comment
+    else if (ligne[0] == '#')   //comment
     {
         //do nothing
     }
@@ -81,106 +67,69 @@ Note SheetParser::getNote(QString ligne)
        QStringList liste = ligne.split(":");
        TYPE_NOTE type;
        LENGTH length;
-       int octave = liste[2];
+       int octave = liste[2].toInt(&ok, 10);
 
-        switch (liste[0]){      //note
+        if (liste[0] ==  "do" || liste[0] == "C")
+                type=DO;
 
-            case "do" || "C":
-                type=TYPE_NOTE.DO;
-                break;
+        else if (liste[0] == "do#" || liste[0] == "C#")
+                type=DO_D;
 
-        switch (liste[0]);
-            case "do#" || "C#":
-                type=TYPE_NOTE.DO_D;
-                break;
+        else if (liste[0] ==  "re" || liste[0] == "D")
+                type=RE;
 
-        switch (liste[0]);
-            case "re" || "D":
-                type=TYPE_NOTE.RE;
-                break;
+        else if (liste[0] ==  "re#" || liste[0] == "D#")
+                type=RE_D;
 
-        switch (liste[0]);
-            case "re#" || "D#":
-                type=TYPE_NOTE.RE_D;
-                break;
+        else if (liste[0] ==   "mi" || liste[0] == "E")
+                type=MI;
 
-        switch (liste[0]);
-            case "mi" || "E":
-                type=TYPE_NOTE.MI;
-                break;
+        else if (liste[0] ==   "fa" || liste[0] == "F")
+                type=FA;
 
-        switch (liste[0]);
-            case "fa" || "F":
-                type=TYPE_NOTE.FA;
-                break;
 
-        switch (liste[0]);
-            case "fa#" || "F#":
-                type=TYPE_NOTE.FA_D;
-                break;
+        else if (liste[0] ==   "fa#" || liste[0] == "F#")
+                type=FA_D;
 
-        switch (liste[0]);
-            case "sol" || "G":
-                type=TYPE_NOTE.SOL;
-                break;
 
-        switch (liste[0]);
-            case "sol#" || "G#":
-                type=TYPE_NOTE.SOL_D;
-                break;
+        else if (liste[0] ==   "sol" || liste[0] == "G")
+                type=SOL;
 
-        switch (liste[0]);
-            case "la" || "A":
-                type=TYPE_NOTE.LA;
-                break;
 
-        switch (liste[0]);
-            case "la#" || "A#":
-                type=TYPE_NOTE.LA_D;
-                break;
+        else if (liste[0] ==   "sol#" || liste[0] == "G#")
+                type=SOL_D;
 
-        switch (liste[0]);
-            case "si" || "B":
-                type=TYPE_NOTE.SI;
-                break;
-    }
 
-        switch (liste[1]){      //length
+        else if (liste[0] ==   "la" || liste[0] == "A")
+                type=LA;
 
-        case "r":
-            length=LENGTH.WHOLE;
-            break;
 
-        case "r.":
-            length=LENGTH.WHOLE_POINT;
-            break;
+        else if (liste[0] ==  "la#" || liste[0] == "A#")
+                type=LA_D;
 
-        case "b":
-            length=LENGTH.HALF;
-            break;
 
-        case "b.":
-            length=LENGTH.HALF_POINT;
-            break;
+        else if (liste[0] ==   "si" || liste[0] == "B")
+                type=SI;
 
-        case "n":
-            length=LENGTH.QUARTER;
-            break;
 
-        case "n.":
-            length=LENGTH.QUARTER_POINT;
-            break;
-
-        case "c":
-            length=LENGTH.EIGHTH;
-            break;
-
-        case "dc":
-            length=LENGTH.SIXTEENTH;
-            break;
-        }
+       if (liste[1] == "r")
+            length=WHOLE;
+       else if (liste[1] == "r.")
+            length=WHOLE_POINT;
+       else if (liste[1] == "b")
+            length=HALF;
+       else if (liste[1] == "b.")
+            length=HALF_POINT;
+       else if (liste[1] == "n")
+            length=QUARTER;
+       else if (liste[1] == "n.")
+            length=QUARTER_POINT;
+       else if (liste[1] == "c")
+            length=EIGHTH;
+       else if (liste[1] == "dc")
+            length=SIXTEENTH;
 
        return Note(length, type, octave);
     }
-
+    return Note();
 }
