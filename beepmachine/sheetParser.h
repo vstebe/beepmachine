@@ -14,6 +14,7 @@ private:
     Sheet * _sh;
     QFile * _file;
     Note getNote(QString ligne);
+    int numLigne;
 
 public:
     SheetParser();
