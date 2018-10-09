@@ -14,6 +14,9 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
+INCLUDEPATH += /usr/local/include
+
+LIBS += -L/usr/local/lib -lmidifile
 
 SOURCES += main.cpp \
     note.cpp \
@@ -22,7 +25,9 @@ SOURCES += main.cpp \
     beepplayer.cpp \
     sheetParser.cpp \
     debugplayer.cpp \
-    exportbeepplayer.cpp
+    exportbeepplayer.cpp \
+    midiParser.cpp \
+    playablenote.cpp
 
 HEADERS += \
     note.h \
@@ -32,4 +37,7 @@ HEADERS += \
     beepplayer.h \
     sheetParser.h \
     debugplayer.h \
-    exportbeepplayer.h
+    exportbeepplayer.h \
+    midiParser.h \
+    parser.h \
+    playablenote.h

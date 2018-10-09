@@ -4,6 +4,7 @@
 #include "sheet.h"
 #include "beepplayer.h"
 #include "sheetParser.h"
+#include "midiParser.h"
 #include "config.h"
 #include "exportbeepplayer.h"
 #include "debugplayer.h"
@@ -47,9 +48,15 @@ int main(int argc, char *argv[])
 
     Player * player;
 
-    SheetParser parser(filename);
+    Parser * parser;
+    if (filename.endsWith(".midi") || filename.endsWith(".mid")) {
+        parser = new MidiParser(filename);
+    } else {
+        parser = new SheetParser(filename);
+    }
 
-    Sheet sheet = parser.getSheet();
+
+    Sheet sheet = parser->getSheet();
 
     if(debug)
         player = new DebugPlayer(&sheet);
@@ -62,5 +69,6 @@ int main(int argc, char *argv[])
 
     //delete player;
 
+    delete parser;
     return 0;
 }

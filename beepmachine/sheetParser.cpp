@@ -1,5 +1,6 @@
 #include "sheetParser.h"
 #include "iostream"
+#include <math.h>
 
 SheetParser::SheetParser()
 {
@@ -12,7 +13,7 @@ SheetParser::SheetParser(QString fileName)
 Sheet SheetParser::getSheet()
 {
     int tempo;
-    QVector <Note> vec;
+    QVector <PlayableNote> vec;
 
    _file = new QFile(_fileName);
    _file->open(QIODevice::ReadOnly | QIODevice::Text);
@@ -33,10 +34,68 @@ Sheet SheetParser::getSheet()
        if (ligne != "" && ligne[0] != '#')      //empty line or comment
        {
            Note n = getNote(ligne);
-           vec.push_back(n);
+           vec.push_back(getPlayableNote(tempo, n));
        }
    }
    return Sheet(vec, tempo);
+}
+
+PlayableNote SheetParser::getPlayableNote(int tempo, const Note& note) {
+    float duration = 60000.f / tempo;
+
+    switch(note.getLength())
+    {
+        case WHOLE:
+            duration = duration * 4;
+            break;
+        case HALF:
+            duration = duration * 2;
+            break;
+        case QUARTER:
+            duration = duration;
+            break;
+        case EIGHTH:
+            duration = duration / 2.f;
+            break;
+        case SIXTEENTH:
+            duration = duration / 4.f;
+            break;
+        case THIRTYSECOND:
+            duration = duration / 8.f;
+            break;
+        case WHOLE_POINT:
+            duration = duration * 6;
+            break;
+        case HALF_POINT:
+            duration = duration * 3;
+            break;
+        case QUARTER_POINT:
+            duration = duration * 1.5f;
+            break;
+        case EIGHTH_POINT:
+            duration = (duration * 1.5f) / 2.f;
+            break;
+        case SIXTEENTH_POINT:
+            duration = (duration * 1.5f) / 4.f;
+            break;
+        case THIRTYSECOND_POINT:
+            duration = (duration * 1.5f) / 8.f;
+            break;
+    }
+
+
+    if(note.getTypeNote() == SILENCE)
+    {
+        return PlayableNote(duration);
+    } else {
+
+        int diffOctave =  note.getOctave() - OCTAVE_REF;
+        int diffHalfTones = note.getTypeNote() - LA;
+        float freq = LA_REF * pow(2, ((float)diffHalfTones) / 12.f);
+
+        return PlayableNote(freq, duration);
+    }
+
 }
 
 
@@ -76,7 +135,7 @@ Note SheetParser::getNote(QString ligne)
     {
        QStringList liste = ligne.split(":");
        TYPE_NOTE type;
-       LENGTH length;
+       LENGTH length = NO_LENGTH;
        int octave;
 
        if (liste.size() == 3)

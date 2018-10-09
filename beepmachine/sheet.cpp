@@ -1,12 +1,12 @@
 #include "sheet.h"
 
-Sheet::Sheet(const QVector<Note> &notes, int tempo)
+Sheet::Sheet(const QVector<PlayableNote> &notes, int tempo)
 {
     _notes = notes;
     _tempo = tempo;
 }
 
-QVector<Note> Sheet::getNotes()
+QVector<PlayableNote> Sheet::getNotes()
 {
     return _notes;
 }

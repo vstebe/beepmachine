@@ -2,17 +2,17 @@
 #define SHEET_H
 
 #include <QVector>
-#include "note.h"
+#include "playablenote.h"
 
 class Sheet
 {
 public:
-    Sheet(const QVector<Note>& notes, int tempo);
+    Sheet(const QVector<PlayableNote>& notes, int tempo);
     int getTempo();
-    QVector<Note> getNotes();
+    QVector<PlayableNote> getNotes();
 
 private:
-    QVector<Note> _notes;
+    QVector<PlayableNote> _notes;
     int _tempo;
 };
 
